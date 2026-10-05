@@ -2,61 +2,230 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контрольна робота: Англійська мова, 10 клас</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 20px auto; padding: 20px; background: #f4f6f9; }
-        h1, h2 { color: #2c3e50; }
-        .card { background: #fff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .task { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
-        input[type="text"], input[type="email"] { padding: 8px; width: 250px; margin: 0 5px; border: 1px solid #ccc; border-radius: 4px; }
-        select { padding: 8px; margin: 0 5px; border-radius: 4px; border: 1px solid #ccc; background: #fff; }
-        .text-block { background: #eef5fb; padding: 15px; border-left: 4px solid #3498db; margin-bottom: 15px; font-size: 0.95em; border-radius: 0 4px 4px 0; }
-        .btn-custom { background: #3498db; color: white; border: none; padding: 10px 20px; font-size: 16px; border-radius: 5px; cursor: pointer; margin-top: 10px; display: inline-block; }
-        .btn-custom:hover { background: #2980b9; }
-        #test-content, #report-screen { display: none; }
-        #auth-screen { text-align: center; padding: 40px; }
-        .error-msg { color: #e74c3c; font-weight: bold; margin-top: 10px; }
-        .correct { color: #27ae60; font-weight: bold; }
-        .incorrect { color: #c0392b; font-weight: bold; text-decoration: line-through; }
-        .report-item { margin-bottom: 10px; padding: 8px; border-radius: 4px; background: #fdfefe; border: 1px solid #e1e8ed; }
-        
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success: #16a34a;
+            --error: #dc2626;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #cbd5e1;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #0f172a;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 24px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        .task {
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .task:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        input[type="text"], input[type="email"] {
+            padding: 10px 14px;
+            width: 280px;
+            max-width: 100%;
+            margin: 5px 0;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        select {
+            padding: 8px 12px;
+            margin: 0 5px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: #fff;
+            font-size: 15px;
+        }
+
+        .text-block {
+            background: #f1f5f9;
+            padding: 16px;
+            border-left: 4px solid var(--primary);
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        #test-screen, #report-screen {
+            display: none;
+        }
+
+        #auth-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .error-msg {
+            color: var(--error);
+            font-weight: 600;
+            margin-top: 12px;
+            min-height: 24px;
+        }
+
+        .correct-answer {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .incorrect-answer {
+            color: var(--error);
+            font-weight: bold;
+            text-decoration: line-through;
+        }
+
+        .report-item {
+            margin-bottom: 12px;
+            padding: 12px;
+            border-radius: 6px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+
+        .score-badge {
+            font-size: 1.6em;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
         @media print {
-            body { background: white; padding: 0; }
-            .no-print { display: none !important; }
-            .card { box-shadow: none; border: 1px solid #ddd; }
+            body {
+                background: white;
+                padding: 0;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Екран авторизації -->
+    <!-- ЕКРАН АВТОРИЗАЦІЇ -->
     <div id="auth-screen" class="card">
         <h2>Вхід до контрольної роботи</h2>
         <p>Введіть своє ім'я та прізвище <strong>латиницею</strong> (наприклад: <em>Artem Solomianyi</em>) та електронну пошту:</p>
-        <input type="text" id="user-name" placeholder="Name and Surname (Latin)"><br><br>
-        <input type="email" id="user-email" placeholder="example@gmail.com">
-        <br><br>
-        <button type="button" class="btn-custom" id="start-btn">Розпочати тест</button>
+        <input type="text" id="user-name" placeholder="Name and Surname (Latin)" autocomplete="off"><br>
+        <input type="email" id="user-email" placeholder="example@gmail.com" autocomplete="off">
+        <br>
+        <button type="button" class="btn" id="start-btn">Розпочати тест</button>
         <div id="auth-error" class="error-msg"></div>
     </div>
 
-    <!-- Основний блок тесту -->
-    <div id="test-content">
-        <h1>Контрольна робота: Unit 1 "My Family and Friends"</h1>
-        <p><strong>Учень:</strong> <span id="display-name"></span> | <strong>Клас:</strong> 10 (Профільний рівень)</p>
-        <p>Загальна кількість балів: <strong>11</strong></p>
+    <!-- ЕКРАН ТЕСТУУВАННЯ -->
+    <div id="test-screen">
+        <div class="card">
+            <h1>Контрольна робота: Unit 1 "My Family and Friends"</h1>
+            <p><strong>Учень:</strong> <span id="display-name"></span> | <strong>Клас:</strong> 10 (Профільний рівень)</p>
+            <p>Загальна кількість завдань: <strong>22</strong> (Максимум: 11 балів)</p>
+        </div>
 
         <!-- Вправа 1 -->
         <div class="card">
             <h2>Exercise 1: Vocabulary (3 бали / по 0.5)</h2>
-            <p><em>Оберіть правильне слово з випадаючого списку відповідно до контексту[cite: 1].</em></p>
+            <p><em>Оберіть правильне слово з випадаючого списку відповідно до контексту.</em></p>
             
-            <div class="task">1. A person who is legally adopted by new parents often becomes an official member of the family through <select data-answer="adoption"><option value="">-- виберіть --</option><option value="adoption">adoption</option><option value="infant">infant</option><option value="fiance">fiance</option></select>.</div>
-            <div class="task">2. When teenagers get together after classes, they usually like to <select data-answer="hang out"><option value="">-- виберіть --</option><option value="goof around">goof around</option><option value="hang out">hang out</option><option value="ride a bike">ride a bike</option></select> at the local café or park.</div>
-            <div class="task">3. My younger brother is quite <select data-answer="bossy"><option value="">-- виберіть --</option><option value="generous">generous</option><option value="bossy">bossy</option><option value="sensitive">sensitive</option></select>; he always tries to tell everyone else what to do.</div>
-            <div class="task">4. A person in the period between childhood and adulthood is officially called an <select data-answer="adolescent"><option value="">-- виберіть --</option><option value="toddler">toddler</option><option value="adolescent">adolescent</option><option value="pensioner">pensioner</option></select>.</div>
-            <div class="task">5. My sister's <select data-answer="husband-to-be"><option value="">-- виберіть --</option><option value="ex-wife">ex-wife</option><option value="husband-to-be">husband-to-be</option><option value="stepdaughter">stepdaughter</option></select> is a very kind and hard-working man who will join our family next month.</div>
-            <div class="task">6. Even when things get difficult, she remains <select data-answer="patient"><option value="">-- виберіть --</option><option value="patient">patient</option><option value="greedy">greedy</option><option value="selfish">selfish</option></select> and never loses her temper.</div>
+            <div class="task">1. A person who is legally adopted by new parents often becomes an official member of the family through 
+                <select data-correct="adoption">
+                    <option value="">-- виберіть --</option>
+                    <option value="adoption">adoption</option>
+                    <option value="infant">infant</option>
+                    <option value="fiance">fiance</option>
+                </select>.
+            </div>
+            <div class="task">2. When teenagers get together after classes, they usually like to 
+                <select data-correct="hang out">
+                    <option value="">-- виберіть --</option>
+                    <option value="goof around">goof around</option>
+                    <option value="hang out">hang out</option>
+                    <option value="ride a bike">ride a bike</option>
+                </select> at the local café or park.
+            </div>
+            <div class="task">3. My younger brother is quite 
+                <select data-correct="bossy">
+                    <option value="">-- виберіть --</option>
+                    <option value="generous">generous</option>
+                    <option value="bossy">bossy</option>
+                    <option value="sensitive">sensitive</option>
+                </select>; he always tries to tell everyone else what to do.
+            </div>
+            <div class="task">4. A person in the period between childhood and adulthood is officially called an 
+                <select data-correct="adolescent">
+                    <option value="">-- виберіть --</option>
+                    <option value="toddler">toddler</option>
+                    <option value="adolescent">adolescent</option>
+                    <option value="pensioner">pensioner</option>
+                </select>.
+            </div>
+            <div class="task">5. My sister's 
+                <select data-correct="husband-to-be">
+                    <option value="">-- виберіть --</option>
+                    <option value="ex-wife">ex-wife</option>
+                    <option value="husband-to-be">husband-to-be</option>
+                    <option value="stepdaughter">stepdaughter</option>
+                </select> is a very kind and hard-working man who will join our family next month.
+            </div>
+            <div class="task">6. Even when things get difficult, she remains 
+                <select data-correct="patient">
+                    <option value="">-- виберіть --</option>
+                    <option value="patient">patient</option>
+                    <option value="greedy">greedy</option>
+                    <option value="selfish">selfish</option>
+                </select> and never loses her temper.
+            </div>
         </div>
 
         <!-- Вправа 2 -->
@@ -64,12 +233,48 @@
             <h2>Exercise 2: Grammar - Used to, Would, Be/Get used to (3 бали / по 0.5)</h2>
             <p><em>Оберіть правильну граматичну форму.</em></p>
 
-            <div class="task">1. When we were children, we <select data-answer="would"><option value="">-- виберіть --</option><option value="would">would</option><option value="are used to">are used to</option></select> spend hours talking about our dreams in the backyard.</div>
-            <div class="task">2. Mark <select data-answer="is used to"><option value="">-- виберіть --</option><option value="used to">used to</option><option value="is used to">is used to</option></select> living in a big noisy city, so the countryside feels too quiet for him.</div>
-            <div class="task">3. I didn't like getting up early, but eventually I <select data-answer="got used to"><option value="">-- виберіть --</option><option value="got used to">got used to</option><option value="would">would</option></select> it.</div>
-            <div class="task">4. My grandfather <select data-answer="used to"><option value="">-- виберіть --</option><option value="used to">used to</option><option value="is used to">is used to</option></select> work at the local factory before he retired.</div>
-            <div class="task">5. She is still finding it hard to <select data-answer="get used to"><option value="">-- виберіть --</option><option value="get used to">get used to</option><option value="used to">used to</option></select> the strict rules at her new school.</div>
-            <div class="task">6. Every Sunday evening our family <select data-answer="would"><option value="">-- виберіть --</option><option value="would">would</option><option value="is used to">is used to</option></select> gather around the large dining table to discuss the week.</div>
+            <div class="task">1. When we were children, we 
+                <select data-correct="would">
+                    <option value="">-- виберіть --</option>
+                    <option value="would">would</option>
+                    <option value="are used to">are used to</option>
+                </select> spend hours talking about our dreams in the backyard.
+            </div>
+            <div class="task">2. Mark 
+                <select data-correct="is used to">
+                    <option value="">-- виберіть --</option>
+                    <option value="used to">used to</option>
+                    <option value="is used to">is used to</option>
+                </select> living in a big noisy city, so the countryside feels too quiet for him.
+            </div>
+            <div class="task">3. I didn't like getting up early, but eventually I 
+                <select data-correct="got used to">
+                    <option value="">-- виберіть --</option>
+                    <option value="got used to">got used to</option>
+                    <option value="would">would</option>
+                </select> it.
+            </div>
+            <div class="task">4. My grandfather 
+                <select data-correct="used to">
+                    <option value="">-- виберіть --</option>
+                    <option value="used to">used to</option>
+                    <option value="is used to">is used to</option>
+                </select> work at the local factory before he retired.
+            </div>
+            <div class="task">5. She is still finding it hard to 
+                <select data-correct="get used to">
+                    <option value="">-- виберіть --</option>
+                    <option value="get used to">get used to</option>
+                    <option value="used to">used to</option>
+                </select> the strict rules at her new school.
+            </div>
+            <div class="task">6. Every Sunday evening our family 
+                <select data-correct="would">
+                    <option value="">-- виберіть --</option>
+                    <option value="would">would</option>
+                    <option value="is used to">is used to</option>
+                </select> gather around the large dining table to discuss the week.
+            </div>
         </div>
 
         <!-- Вправа 3 -->
@@ -82,22 +287,46 @@
             </div>
 
             <div class="task">1. Extended families never include in-laws or half-siblings living together. 
-                <select data-answer="False"><option value="">-- виберіть --</option><option value="True">True</option><option value="False">False</option></select>
+                <select data-correct="False">
+                    <option value="">-- виберіть --</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
             </div>
             <div class="task">2. Sociological studies show that close bonds with peers and family build emotional resilience in teenagers. 
-                <select data-answer="True"><option value="">-- виберіть --</option><option value="True">True</option><option value="False">False</option></select>
+                <select data-correct="True">
+                    <option value="">-- виберіть --</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
             </div>
             <div class="task">3. Modern youngsters spend zero digital time chatting or hanging out virtually. 
-                <select data-answer="False"><option value="">-- виберіть --</option><option value="True">True</option><option value="False">False</option></select>
+                <select data-correct="False">
+                    <option value="">-- виберіть --</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
             </div>
             <div class="task">4. Face-to-face interactions remain important for developing deep empathy and tolerance. 
-                <select data-answer="True"><option value="">-- виберіть --</option><option value="True">True</option><option value="False">False</option></select>
+                <select data-correct="True">
+                    <option value="">-- виберіть --</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
             </div>
             <div class="task">5. Developing traits like patience and tolerance is considered unimportant during school-age years. 
-                <select data-answer="False"><option value="">-- виберіть --</option><option value="True">True</option><option value="False">False</option></select>
+                <select data-correct="False">
+                    <option value="">-- виберіть --</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
             </div>
             <div class="task">6. Adopted environments and foster parents can provide the stability children need to overcome hardships. 
-                <select data-answer="True"><option value="">-- виберіть --</option><option value="True">True</option><option value="False">False</option></select>
+                <select data-correct="True">
+                    <option value="">-- виберіть --</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
             </div>
         </div>
 
@@ -107,139 +336,172 @@
             <p><em>У кожному реченні є граматична помилка, пов'язана з Future Continuous. Знайдіть її та впишіть правильний виправлений варіант усього речення.</em></p>
 
             <div class="task">1. <em>This time tomorrow, we will travelling to Lviv.</em><br>
-                Виправлений варіант: <input type="text" data-answer="this time tomorrow, we will be travelling to lviv" placeholder="Введіть речення">
+                Виправлений варіант: <input type="text" class="text-answer" data-correct="this time tomorrow, we will be travelling to lviv" placeholder="Введіть речення">
             </div>
             <div class="task">2. <em>At 8 p.m., she will working on her project.</em><br>
-                Виправлений варіант: <input type="text" data-answer="at 8 p.m., she will be working on her project" placeholder="Введіть речення">
+                Виправлений варіант: <input type="text" class="text-answer" data-correct="at 8 p.m., she will be working on her project" placeholder="Введіть речення">
             </div>
             <div class="task">3. <em>What you will be doing while I am away?</em><br>
-                Виправлений варіант: <input type="text" data-answer="what will you be doing while i am away?" placeholder="Введіть речення">
+                Виправлений варіант: <input type="text" class="text-answer" data-correct="what will you be doing while i am away?" placeholder="Введіть речення">
             </div>
             <div class="task">4. <em>They will not having a rest at this hour tomorrow.</em><br>
-                Виправлений варіант: <input type="text" data-answer="they will not be having a rest at this hour tomorrow" placeholder="Введіть речення">
+                Виправлений варіант: <input type="text" class="text-answer" data-correct="they will not be having a rest at this hour tomorrow" placeholder="Введіть речення">
             </div>
         </div>
 
-        <button type="button" class="btn-custom" id="submit-btn">Здати роботу та сформувати звіт</button>
+        <div class="card" style="text-align: center;">
+            <button type="button" class="btn" id="submit-btn">Здати роботу та сформувати звіт</button>
+        </div>
     </div>
 
-    <!-- Екран звіту для збереження у PDF -->
+    <!-- ЕКРАН ЗВІТУ -->
     <div id="report-screen" class="card">
         <h2>Результати контрольної роботи</h2>
         <p><strong>Учень:</strong> <span id="rep-name"></span></p>
         <p><strong>Пошта:</strong> <span id="rep-email"></span></p>
-        <p><strong>Отриманий бал:</strong> <span id="rep-score" style="font-size: 1.4em; color: #2980b9;"></span> з 11</p>
+        <p><strong>Отриманий бал:</strong> <span id="rep-score" class="score-badge"></span> з 11</p>
         <hr>
         <h3>Детальний розбір відповідей:</h3>
         <div id="rep-details"></div>
         <br>
-        <button type="button" class="btn-custom no-print" id="print-btn">Зберегти звіт у PDF (обрати у вікні друку)</button>
+        <button type="button" class="btn no-print" id="print-btn">Зберегти звіт у PDF (обрати у вікні друку)</button>
     </div>
 
     <script>
-        (function() {
-            let currentUser = { name: "", email: "" };
+        document.addEventListener("DOMContentLoaded", function () {
+            let studentName = "";
+            let studentEmail = "";
 
-            function isLatin(text) {
+            // Функція перевірки латиниці
+            function isValidLatin(text) {
                 return /^[a-zA-Z0-9\s\-_]+$/.test(text);
             }
 
-            // Навішуємо слухачі подій через JS замість inline onclick (надійніше)
-            document.getElementById('start-btn').addEventListener('click', function() {
-                let nameInput = document.getElementById('user-name').value.trim();
-                let emailInput = document.getElementById('user-email').value.trim();
-                let errorDiv = document.getElementById('auth-error');
+            // Кнопка старту тесту
+            const startBtn = document.getElementById("start-btn");
+            if (startBtn) {
+                startBtn.addEventListener("click", function () {
+                    const nameInput = document.getElementById("user-name").value.trim();
+                    const emailInput = document.getElementById("user-email").value.trim();
+                    const errorDiv = document.getElementById("auth-error");
 
-                if (!nameInput || !isLatin(nameInput)) {
-                    errorDiv.innerText = "Будь ласка, введіть ім'я та прізвище ВИКЛЮЧНО латиницею!";
-                    return;
-                }
+                    if (!nameInput || !isValidLatin(nameInput)) {
+                        errorDiv.textContent = "Будь ласка, введіть ім'я та прізвище ВИКЛЮЧНО латиницею!";
+                        return;
+                    }
 
-                if (!emailInput || !emailInput.includes('@')) {
-                    errorDiv.innerText = "Введіть коректну електронну пошту!";
-                    return;
-                }
+                    if (!emailInput || !emailInput.includes("@")) {
+                        errorDiv.textContent = "Введіть коректну електронну пошту!";
+                        return;
+                    }
 
-                let completedEmails = [];
-                try {
-                    completedEmails = JSON.parse(localStorage.getItem('completed_emails') || '[]');
-                } catch(e) {}
+                    // Перевірка на повторне проходження
+                    let completed = [];
+                    try {
+                        completed = JSON.parse(localStorage.getItem("completed_tests") || "[]");
+                    } catch (e) {}
 
-                if (completedEmails.includes(emailInput)) {
-                    errorDiv.innerText = "Ця електронна пошта вже виконувала контрольну роботу!";
-                    return;
-                }
+                    if (completed.includes(emailInput)) {
+                        errorDiv.textContent = "Ця електронна пошта вже виконувала контрольну роботу!";
+                        return;
+                    }
 
-                currentUser.name = nameInput;
-                currentUser.email = emailInput;
+                    studentName = nameInput;
+                    studentEmail = emailInput;
 
-                document.getElementById('display-name').innerText = nameInput;
-                document.getElementById('auth-screen').style.display = 'none';
-                document.getElementById('test-content').style.display = 'block';
-            });
-
-            document.getElementById('submit-btn').addEventListener('click', function() {
-                let correctCount = 0;
-                let detailsHtml = "";
-                let taskIndex = 1;
-
-                // Перевірка випадаючих списків (селектів)
-                document.querySelectorAll('select').forEach(sel => {
-                    let userVal = sel.value;
-                    let correctVal = sel.getAttribute('data-answer');
-                    let isCorrect = (userVal === correctVal);
-
-                    if (isCorrect) correctCount++;
-
-                    detailsHtml += '<div class="report-item">' +
-                        '<strong>Завдання ' + (taskIndex++) + ':</strong> Ваша відповідь: <span class="' + (isCorrect ? 'correct' : 'incorrect') + '">' + (userVal || 'не вказано') + '</span> ' +
-                        (!isCorrect ? '(Правильно: <b>' + correctVal + '</b>)' : '') +
-                        '</div>';
+                    document.getElementById("display-name").textContent = studentName;
+                    document.getElementById("auth-screen").style.display = "none";
+                    document.getElementById("test-screen").style.display = "block";
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                 });
+            }
 
-                // Перевірка текстових полів (Вправа 4)
-                document.querySelectorAll('input[type="text"]').forEach(input => {
-                    let userVal = input.value.trim().toLowerCase().replace(/\s+/g, ' ');
-                    let correctVal = input.getAttribute('data-answer').toLowerCase().replace(/\s+/g, ' ');
-                    
-                    userVal = userVal.replace(/[.!?]/g, '');
-                    correctVal = correctVal.replace(/[.!?]/g, '');
+            // Кнопка здачі роботи
+            const submitBtn = document.getElementById("submit-btn");
+            if (submitBtn) {
+                submitBtn.addEventListener("click", function () {
+                    let correctCount = 0;
+                    let totalTasks = 0;
+                    let detailsHTML = "";
 
-                    let isCorrect = (userVal === correctVal);
-                    if (isCorrect) correctCount++;
+                    // 1. Перевірка випадаючих списків (select)
+                    const selects = document.querySelectorAll("select[data-correct]");
+                    selects.forEach((sel, index) => {
+                        totalTasks++;
+                        const userVal = sel.value;
+                        const correctVal = sel.getAttribute("data-correct");
+                        const isCorrect = (userVal === correctVal);
 
-                    detailsHtml += '<div class="report-item">' +
-                        '<strong>Завдання ' + (taskIndex++) + ':</strong> Ваша відповідь: <span class="' + (isCorrect ? 'correct' : 'incorrect') + '">' + (input.value || 'не вказано') + '</span> ' +
-                        (!isCorrect ? '(Правильно: <b>' + input.getAttribute('data-answer') + '</b>)' : '') +
-                        '</div>';
+                        if (isCorrect) {
+                            correctCount++;
+                        }
+
+                        detailsHTML += `
+                            <div class="report-item">
+                                <strong>Завдання ${totalTasks}:</strong> 
+                                Ваша відповідь: <span class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">${userVal ? userVal : 'не вказано'}</span>
+                                ${!isCorrect ? ` (Правильно: <b>${correctVal}</b>)` : ''}
+                            </div>
+                        `;
+                    });
+
+                    // 2. Перевірка текстових полів (input text)
+                    const textInputs = document.querySelectorAll("input.text-answer");
+                    textInputs.forEach((inp) => {
+                        totalTasks++;
+                        let userVal = inp.value.trim().toLowerCase().replace(/\s+/g, " ");
+                        let correctVal = inp.getAttribute("data-correct").toLowerCase().replace(/\s+/g, " ");
+
+                        // Прибираємо зайві знаки пунктуації в кінці для лояльнішої перевірки
+                        userVal = userVal.replace(/[.!?]/g, "");
+                        correctVal = correctVal.replace(/[.!?]/g, "");
+
+                        const isCorrect = (userVal === correctVal);
+
+                        if (isCorrect) {
+                            correctCount++;
+                        }
+
+                        detailsHTML += `
+                            <div class="report-item">
+                                <strong>Завдання ${totalTasks}:</strong> 
+                                Ваша відповідь: <span class="${isCorrect ? 'correct-answer' : 'incorrect-answer'}">${inp.value ? inp.value : 'не вказано'}</span>
+                                ${!isCorrect ? ` (Правильно: <b>${inp.getAttribute('data-correct')}</b>)` : ''}
+                            </div>
+                        `;
+                    });
+
+                    // Розрахунок балів (22 завдання, кожне по 0.5 бала = 11 балів максимум)
+                    const finalScore = (correctCount * 0.5).toFixed(1);
+
+                    // Збереження пошти у сховище, щоб уникнути повторного проходження
+                    try {
+                        let completed = JSON.parse(localStorage.getItem("completed_tests") || "[]");
+                        completed.push(studentEmail);
+                        localStorage.setItem("completed_tests", JSON.stringify(completed));
+                    } catch (e) {}
+
+                    // Заповнення звіту
+                    document.getElementById("rep-name").textContent = studentName;
+                    document.getElementById("rep-email").textContent = studentEmail;
+                    document.getElementById("rep-score").textContent = finalScore;
+                    document.getElementById("rep-details").innerHTML = detailsHTML;
+
+                    // Перемикання екранів
+                    document.getElementById("test-screen").style.display = "none";
+                    document.getElementById("report-screen").style.display = "block";
+                    window.scrollTo({ top: 0, behavior: "smooth" });
                 });
+            }
 
-                let finalScore = (correctCount * 0.5).toFixed(1);
-
-                // Зберігаємо пошту в сховищі
-                try {
-                    let completedEmails = JSON.parse(localStorage.getItem('completed_emails') || '[]');
-                    completedEmails.push(currentUser.email);
-                    localStorage.setItem('completed_emails', JSON.stringify(completedEmails));
-                } catch(e) {}
-
-                // Заповнюємо екран звіту
-                document.getElementById('rep-name').innerText = currentUser.name;
-                document.getElementById('rep-email').innerText = currentUser.email;
-                document.getElementById('rep-score').innerText = finalScore;
-                document.getElementById('rep-details').innerHTML = detailsHtml;
-
-                // Перемикаємо екрани
-                document.getElementById('test-content').style.display = 'none';
-                document.getElementById('report-screen').style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            document.getElementById('print-btn').addEventListener('click', function() {
-                window.print();
-            });
-        })();
+            // Кнопка збереження у PDF (Друк)
+            const printBtn = document.getElementById("print-btn");
+            if (printBtn) {
+                printBtn.addEventListener("click", function () {
+                    window.print();
+                });
+            }
+        });
     </script>
-
 </body>
 </html>
